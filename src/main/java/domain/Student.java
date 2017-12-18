@@ -37,15 +37,17 @@ public class Student extends BasicStudent {
     public JsonObject toJsonObject() {
         JsonPair namePair = new JsonPair("name", new JsonString(sName));
         JsonPair surnamePair = new JsonPair("surname", new JsonString(sSurname));
-        JsonPair nameYear = new JsonPair("year", new JsonNumber(sYear));
+        JsonPair yearPair = new JsonPair("year", new JsonNumber(sYear));
 
         ArrayList<Json> jsonExamsArrayList = new ArrayList<>();
         for (Tuple<String, Integer> tuple : sExams) {
             jsonExamsArrayList.add(exam(tuple.key, tuple.value));
         }
-        ;
-        JsonArray jsonExams = new JsonArray();
 
-        JsonObject jsonObject = new JsonObject();
+        JsonObject[] arrayExams = jsonExamsArrayList.toArray(new JsonObject[jsonExamsArrayList.size()]);
+
+        JsonArray jsonExams = new JsonArray(arrayExams);
+
+        return new JsonObject(namePair, surnamePair, yearPair, new JsonPair("exams", jsonExams));
     }
 }
