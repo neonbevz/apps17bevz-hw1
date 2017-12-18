@@ -20,7 +20,7 @@ public class JsonObject extends Json {
     @Override
     public String toJson() {
         StringBuilder str = new StringBuilder("{");
-        for (int ind=0; ind<pairs.size(); ind++) {
+        for (int ind = 0; ind < pairs.size(); ind++) {
             if (ind > 0) {
                 str.append(", ");
             }
@@ -32,7 +32,7 @@ public class JsonObject extends Json {
     }
 
     private void overwrite(JsonPair pair) {
-        for (int i=0; i<pairs.size(); i++) {
+        for (int i = 0; i < pairs.size(); i++) {
             if (pairs.get(i).key.equals(pair.key)) {
                 pairs.set(i, pair);
             }

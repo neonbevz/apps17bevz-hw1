@@ -3,27 +3,26 @@ package domain;
 import json.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class Student extends BasicStudent {
 
-    protected String sName;
-    protected String sSurname;
-    protected Integer sYear;
-    protected Tuple<String, Integer>[] sExams;
+    private String name;
+    private String surname;
+    private int year;
+    private Tuple<String, Integer>[] exams;
 
-    public Student(String name, String surname, Integer year, Tuple<String, Integer>... exams) {
-        sName = name;
-        sSurname = surname;
-        sYear = year;
-        sExams = exams;
+    public Student(String name, String surname, int year, Tuple<String,
+                   Integer>... exams) {
+        this.name = name;
+        this.surname = surname;
+        this.year = year;
+        this.exams = exams;
     }
 
-    private JsonObject exam(String course, Integer mark) {
+    private JsonObject exam(String course, int mark) {
         boolean passed = false;
         if (mark > 2) {
             passed = true;
@@ -35,19 +34,22 @@ public class Student extends BasicStudent {
     }
 
     public JsonObject toJsonObject() {
-        JsonPair namePair = new JsonPair("name", new JsonString(sName));
-        JsonPair surnamePair = new JsonPair("surname", new JsonString(sSurname));
-        JsonPair yearPair = new JsonPair("year", new JsonNumber(sYear));
+        JsonPair namePair = new JsonPair("name", new JsonString(name));
+        JsonPair surnamePair = new JsonPair("surname",
+                                            new JsonString(surname));
+        JsonPair yearPair = new JsonPair("year", new JsonNumber(year));
 
         ArrayList<Json> jsonExamsArrayList = new ArrayList<>();
-        for (Tuple<String, Integer> tuple : sExams) {
+        for (Tuple<String, Integer> tuple : exams) {
             jsonExamsArrayList.add(exam(tuple.key, tuple.value));
         }
 
-        JsonObject[] arrayExams = jsonExamsArrayList.toArray(new JsonObject[jsonExamsArrayList.size()]);
+        JsonObject[] arrayExams =
+                jsonExamsArrayList.toArray(new JsonObject[jsonExamsArrayList.size()]);
 
         JsonArray jsonExams = new JsonArray(arrayExams);
 
-        return new JsonObject(namePair, surnamePair, yearPair, new JsonPair("exams", jsonExams));
+        return new JsonObject(namePair, surnamePair, yearPair,
+                              new JsonPair("exams", jsonExams));
     }
 }
