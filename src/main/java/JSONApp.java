@@ -41,29 +41,19 @@ public class JSONApp {
         JsonPair surname = new JsonPair("surname", new JsonString("Rodionov"));
         JsonPair year = new JsonPair("year", new JsonNumber(2));
 
-        JsonObject examArray1 = new JsonObject(new JsonPair("course",
-                                            new JsonString("OOP")),
-                                            new JsonPair("mark",
-                                            new JsonNumber(3)),
-                                            new JsonPair("passed",
-                                            new JsonBoolean(true)));
+        JsonObject examArray1 = new JsonObject(new JsonPair("course", new JsonString("OOP")),
+                                            new JsonPair("mark", new JsonNumber(3)),
+                                            new JsonPair("passed", new JsonBoolean(true)));
 
-        JsonObject examArray2 = new JsonObject(new JsonPair("course",
-                                                    new JsonString("English")),
-                                               new JsonPair("mark",
-                                                    new JsonNumber(5)),
-                                               new JsonPair("passed",
-                                                    new JsonBoolean(true)));
+        JsonObject examArray2 = new JsonObject(new JsonPair("course", new JsonString("English")),
+                new JsonPair("mark", new JsonNumber(5)),
+                new JsonPair("passed", new JsonBoolean(true)));
 
-        JsonObject examArray3 = new JsonObject(new JsonPair("course",
-                                                new JsonString("Math")),
-                                               new JsonPair("mark",
-                                                new JsonNumber(2)),
-                                               new JsonPair("passed",
-                                                new JsonBoolean(false)));
+        JsonObject examArray3 = new JsonObject(new JsonPair("course", new JsonString("Math")),
+                new JsonPair("mark", new JsonNumber(2)),
+                new JsonPair("passed", new JsonBoolean(false)));
 
-        JsonPair exams = new JsonPair("exams",
-                new JsonArray(examArray1, examArray2, examArray3));
+        JsonPair exams = new JsonPair("exams", new JsonArray(examArray1, examArray2, examArray3));
 
         return new JsonObject(name, surname, year, exams);
     }

@@ -7,9 +7,9 @@ import json.*;
  */
 public class BasicStudent implements Jsonable {
 
-    private String name;
-    private String surname;
-    private int year;
+    protected String name;
+    protected String surname;
+    protected Integer year;
 
     public BasicStudent() {
     }
@@ -27,17 +27,5 @@ public class BasicStudent implements Jsonable {
         JsonPair jsonYear = new JsonPair("year", new JsonNumber(year));
 
         return new JsonObject(jsonName, jsonSurname, jsonYear);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public int getYear() {
-        return year;
     }
 }
